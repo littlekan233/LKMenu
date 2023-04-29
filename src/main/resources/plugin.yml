@@ -1,0 +1,16 @@
+name: ChestMenu
+version: '${project.version}'
+author: littlekan233(@littlekan on Spigot Community)
+main: ml.littlekan.chestmenu.ChestMenu
+api-version: 1.19
+website: www.littlekan.ml
+prefix: ChestMenu
+commands:
+  openmenu:
+    description: Open a menu.
+    permission: chestmenu.open
+    permission-message: "§r[§cChestMenu§r] §cHmm...you're not permission to use this command."
+permissions:
+  chestmenu.open:
+    description: "Permission for /openmenu command."
+    default: true
