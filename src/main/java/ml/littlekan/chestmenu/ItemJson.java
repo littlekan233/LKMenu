@@ -9,15 +9,17 @@ public class ItemJson {
     private int amount = 1;
     @SerializedName("ID")
     private String id;
-    @SerializedName("TAG")
-    private Object tag;
+    @SerializedName("META")
+    private MetaJsonTemplate meta = new MetaJsonTemplate();
+    @SerializedName("CLICK")
+    private String[] onclick;
 
     public int getAmount() {
         return amount;
     }
 
-    public Object getTag() {
-        return tag;
+    public MetaJsonTemplate getMeta() {
+        return meta;
     }
 
     public String getId() {
@@ -26,5 +28,9 @@ public class ItemJson {
 
     public int getIndex() {
         return index;
+    }
+
+    public String[] getClickEvent(){
+        return onclick;
     }
 }

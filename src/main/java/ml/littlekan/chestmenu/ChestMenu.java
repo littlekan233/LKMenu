@@ -14,9 +14,12 @@ public final class ChestMenu extends JavaPlugin {
             logger.info("It seems like you're first of use this plugin, initializing...");
             getConfig().set("default-width", 7);
             getConfig().set("default-height", 5);
+            getConfig().set("enabled-menu",new String[]{});
+            saveConfig();
         }
-        logger.info("Registering commands...");
+        logger.info("Registering commands & event listeners...");
         getCommand("openmenu").setExecutor(new OpenCommand());
+        getServer().getPluginManager().registerEvents(new MenuEvent(), this);
     }
 
     @Override

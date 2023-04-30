@@ -2,6 +2,7 @@ package ml.littlekan.chestmenu;
 
 import java.io.FileNotFoundException;
 
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
@@ -18,7 +19,6 @@ public class MenuEvent implements Listener {
             try {
                 curinv = new Loader().load(menu);
             } catch (FileNotFoundException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
 
@@ -32,5 +32,19 @@ public class MenuEvent implements Listener {
             return;
         }
         inv.setCancelled(true);
+        if(inv.getRawSlot() > inv.getInventory().getSize() || inv.getRawSlot() < 0){
+            return;
+        }
+
+        ItemJson[] items = curinv.getItems();
+        for (ItemJson item : items) {
+            if(inv.getRawSlot() == item.getIndex()){
+                Player player = (Player) inv.getWhoClicked();
+                for(String command : item.getClickEvent()){
+                    player.chat(command);
+                }
+            }
+        }
+        return;
     }
 }
