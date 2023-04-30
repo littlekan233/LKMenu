@@ -1,10 +1,7 @@
 package ml.littlekan.chestmenu;
 
 import java.io.*;
-import java.util.List;
-
 import com.google.gson.*;
-import com.google.gson.reflect.TypeToken;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.inventory.Inventory;

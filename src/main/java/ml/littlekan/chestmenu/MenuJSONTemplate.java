@@ -2,8 +2,6 @@ package ml.littlekan.chestmenu;
 
 import com.google.gson.annotations.SerializedName;
 
-import java.util.List;
-
 public class MenuJSONTemplate {
     @SerializedName("TITLE")
     private String title;

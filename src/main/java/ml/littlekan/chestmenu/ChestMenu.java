@@ -1,10 +1,6 @@
 package ml.littlekan.chestmenu;
 
-import org.bukkit.plugin.PluginLogger;
 import org.bukkit.plugin.java.JavaPlugin;
-import com.google.gson.*;
-
-import java.io.FileNotFoundException;
 
 public final class ChestMenu extends JavaPlugin {
     private java.util.logging.Logger logger = getLogger();
