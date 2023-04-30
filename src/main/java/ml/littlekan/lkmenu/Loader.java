@@ -1,4 +1,4 @@
-package ml.littlekan.chestmenu;
+package ml.littlekan.lkmenu;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -14,7 +14,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class Loader {
-    public JavaPlugin instance = JavaPlugin.getPlugin(ChestMenu.class);
+    public JavaPlugin instance = JavaPlugin.getPlugin(LKMenu.class);
 
     public MenuJSONTemplate load(String name) throws FileNotFoundException {
         if (!instance.getConfig().get("enabled-menu").equals(name)){
@@ -22,7 +22,7 @@ public class Loader {
             return null;
         }
         File jsondata = null;
-        File datafolder = org.bukkit.plugin.java.JavaPlugin.getPlugin(ChestMenu.class).getDataFolder();
+        File datafolder = org.bukkit.plugin.java.JavaPlugin.getPlugin(LKMenu.class).getDataFolder();
         for(File f : datafolder.listFiles()) if(f.getName() == "menus" && f.isDirectory()) break; else return null;
         File menus = new File(datafolder, "menus");
         for (File f : menus.listFiles()) if (f.getName() == name && f.isFile()) {

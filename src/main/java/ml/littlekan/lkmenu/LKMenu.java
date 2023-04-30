@@ -1,8 +1,8 @@
-package ml.littlekan.chestmenu;
+package ml.littlekan.lkmenu;
 
 import org.bukkit.plugin.java.JavaPlugin;
 
-public final class ChestMenu extends JavaPlugin {
+public final class LKMenu extends JavaPlugin {
     private java.util.logging.Logger logger = getLogger();
 
     @Override

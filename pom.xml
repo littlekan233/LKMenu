@@ -5,11 +5,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>ml.littlekan</groupId>
-    <artifactId>ChestMenu</artifactId>
+    <artifactId>LKMenu</artifactId>
     <version>1.0.0</version>
     <packaging>jar</packaging>
 
-    <name>ChestMenu</name>
+    <name>LKMenu</name>
 
     <properties>
         <java.version>1.8</java.version>

@@ -1,4 +1,4 @@
-package ml.littlekan.chestmenu;
+package ml.littlekan.lkmenu;
 
 import com.google.gson.annotations.SerializedName;
 

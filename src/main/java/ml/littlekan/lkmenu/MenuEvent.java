@@ -1,4 +1,4 @@
-package ml.littlekan.chestmenu;
+package ml.littlekan.lkmenu;
 
 import java.io.FileNotFoundException;
 
@@ -12,7 +12,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 public class MenuEvent implements Listener {
     @EventHandler
     public void onItemClick(InventoryClickEvent inv){
-        JavaPlugin instance = JavaPlugin.getPlugin(ChestMenu.class);
+        JavaPlugin instance = JavaPlugin.getPlugin(LKMenu.class);
         String[] menus = (String[]) instance.getConfig().get("enabled-menu");
         MenuJSONTemplate curinv = null;
         for (String menu : menus) {
