@@ -1,0 +1,17 @@
+# LKMenu config
+# (C) 2023 littlekan233. 
+# All rights reserved. 
+
+# Default menu width & height
+# If menu manifest(XXX.json)
+# doesn't set width and/or height,
+# will be use the default width and/or height
+default-width: 7
+default-height: 5
+
+# Enabled menus
+# If you want to use some menus,
+# Please add the menu's name(file name)
+enabled-menus:
+ - first_menu
+ - second_menu

@@ -7,10 +7,32 @@ website: www.littlekan.ml
 prefix: LKMenu
 commands:
   openmenu:
-    description: Open a menu.
+    aliases: 
+      - "menu"
+      - "lkmopen"
+    description: "Open a menu."
+    usage: "/<command> <name>"
     permission: lkmenu.open
-    permission-message: "§r[§cLKMenu§r] §cYou're not permission to do that!"
+    permission-message: "§r[§cLKMenu§r] §cYou don't have permission to do that!"
+  lkmenu:
+    aliases:
+      - "lkm"
+    description: "Main command."
+    usage: "/<command> [help|open <name>|reload|version]"
 permissions:
   lkmenu.open:
-    description: "Permission for /openmenu command."
+    description: "Permission for \"/openmenu\" and \"/lkmenu open\" command."
     default: true
+  lkmenu.reload:
+    description: "Permission for \"/lkmenu reload\" command."
+    default: op
+  lkmenu.help:
+    description: "Permission for \"/lkmenu help\" command."
+    default: true
+  lkmenu.*:
+    description: "All permissions of LKMenu."
+    default: op
+    children:
+      lkmenu.help: true
+      lkmenu.open: true
+      lkmenu.reload: true
