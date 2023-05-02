@@ -3,7 +3,6 @@ package ml.littlekan.lkmenu;
 import java.io.File;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
-import io.papermc.lib.PaperLib;
 
 public final class LKMenu extends JavaPlugin {
     private java.util.logging.Logger logger = getLogger();
