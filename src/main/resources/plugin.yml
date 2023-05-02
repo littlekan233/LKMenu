@@ -2,7 +2,7 @@ name: LKMenu
 version: '${project.version}'
 author: littlekan233(@littlekan on Spigot Community)
 main: ml.littlekan.lkmenu.LKMenu
-api-version: 1.19
+#api-version: 1.19
 website: www.littlekan.ml
 prefix: LKMenu
 commands:
