@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName;
 
 public class MenuJSONTemplate {
     @SerializedName("TITLE")
-    private String title;
+    private String title = "Title";
     @SerializedName("ITEMS")
     private ItemJson[] items;
     @SerializedName("WIDTH")
