@@ -28,7 +28,7 @@ public class Loader {
         if(!file.exists()){
             instance.getLogger().severe("This menu is enabled, but file \""+name+".json\" does not exists!");
             return null;
-        }else if (file.exists() && !isItemExists(instance.getConfig().getStringList("enabled-menu"),name)){
+        }else if (file.exists() && !isItemExists(instance.getConfig().getStringList("enabled-menus"), name)){
             instance.getLogger().severe("File \""+name+".json\" exists, but not enable in config.yml!");
             return null;
         }
