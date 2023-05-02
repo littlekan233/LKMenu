@@ -10,6 +10,10 @@ import java.io.FileNotFoundException;
 public class OpenCommand implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+        if(args.length == 0){
+            sender.sendMessage("§r[§cLKMenu§r] §cYou are not specify the menu name! See \"/lkmenu help\" for help.");
+            return true;
+        }
         MenuJSONTemplate menu;
         try {
             menu = new Loader().load(args[0]);
@@ -18,18 +22,18 @@ public class OpenCommand implements CommandExecutor {
         }
 
         if(menu == null){
-            sender.sendMessage("§r[§cChestMenu§r] §cThis menu is not exists! ");
-            return false;
+            sender.sendMessage("§r[§cLKMenu§r] §cThis menu does not exists or not enabled! ");
+            return true;
         }
 
         Inventory gui = new Loader().toInstance(menu);
 
         Player player = (Player) sender;
         if(!(player instanceof Player)){
-            sender.sendMessage("§r[§cChestMenu§r] §cConsole cannot execute this command! ");
-            return false;
+            sender.sendMessage("§r[§cLKMenu§r] §cConsole cannot execute this command! ");
+            return true;
         }
         player.openInventory(gui);
-        return false;
+        return true;
     }
 }

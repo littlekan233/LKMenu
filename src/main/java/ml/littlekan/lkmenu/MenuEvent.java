@@ -47,6 +47,8 @@ public class MenuEvent implements Listener {
                     }
                 }
             }
-        }catch (Exception e){}
+        }catch (Exception e){
+            // Do nothing
+        }
     }
 }

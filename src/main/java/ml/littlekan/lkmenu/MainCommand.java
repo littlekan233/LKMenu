@@ -40,6 +40,6 @@ public class MainCommand implements CommandExecutor {
         }else{
             sender.sendMessage("§r[§cLKMenu§r] §cUnknown command! Type §6\"/lkmenu help\"§c for help.");
         }
-        return false;
+        return true;
     }
 }

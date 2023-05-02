@@ -4,6 +4,7 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import com.google.gson.*;
+import com.google.gson.stream.JsonReader;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
@@ -16,24 +17,23 @@ import org.bukkit.plugin.java.JavaPlugin;
 public class Loader {
     public JavaPlugin instance = JavaPlugin.getPlugin(LKMenu.class);
 
+    private boolean isItemExists(List<String> strlist, String str){
+        for (String s : strlist) if(s.equals(str)) return true;
+        return false;
+    }
     public MenuJSONTemplate load(String name) throws FileNotFoundException {
-        if (!instance.getConfig().get("enabled-menu").equals(name)){
-            instance.getLogger().severe("This menu is enabled, but file \""+name+".json\" does not exist!");
-            return null;
-        }
-        File jsondata = null;
         File datafolder = org.bukkit.plugin.java.JavaPlugin.getPlugin(LKMenu.class).getDataFolder();
-        for(File f : datafolder.listFiles()) if(f.getName() == "menus" && f.isDirectory()) break; else return null;
         File menus = new File(datafolder, "menus");
-        for (File f : menus.listFiles()) if (f.getName() == name && f.isFile()) {
-            jsondata = f;
-            break;
-        } else {
-            instance.getLogger().severe("File \""+name+".json\" exist, but not enable in config.yml!");
+        File file = new File(menus, name + ".json");
+        if(!file.exists()){
+            instance.getLogger().severe("This menu is enabled, but file \""+name+".json\" does not exists!");
+            return null;
+        }else if (file.exists() && !isItemExists(instance.getConfig().getStringList("enabled-menu"),name)){
+            instance.getLogger().severe("File \""+name+".json\" exists, but not enable in config.yml!");
             return null;
         }
         Gson gson = new Gson();
-        MenuJSONTemplate gui = gson.fromJson(new FileReader(jsondata), MenuJSONTemplate.class);
+        MenuJSONTemplate gui = gson.fromJson(new JsonReader(new FileReader(file)), MenuJSONTemplate.class);
         return gui;
     }
 
