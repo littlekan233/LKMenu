@@ -20,8 +20,9 @@ public final class LKMenu extends JavaPlugin {
             getConfig().set("enabled-menu",new String[]{});
             saveConfig();
              **/
-            new File(getDataFolder(), "menus").mkdir();
+            getDataFolder().mkdir();
             saveDefaultConfig();
+            new File(getDataFolder(), "menus").mkdir();
         }
         logger.info("Registering commands & event listeners...");
         getCommand("openmenu").setExecutor(new OpenCommand());
