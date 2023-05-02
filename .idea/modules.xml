@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/ChestMenu.iml" filepath="$PROJECT_DIR$/ChestMenu.iml" />
       <module fileurl="file://$PROJECT_DIR$/LKMenu.iml" filepath="$PROJECT_DIR$/LKMenu.iml" />
     </modules>
   </component>

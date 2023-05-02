@@ -9,23 +9,24 @@ public class MainCommand implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         JavaPlugin instance = JavaPlugin.getPlugin(LKMenu.class);
-        if(args[0].toLowerCase() == "open"){
+
+        if(args.length == 0 || args[0].equals("version")){
+            sender.sendMessage("§aServer is running §6LKMenu §bv1.0.0§a! <3");
+            sender.sendMessage("§aType §6§l\"/lkmenu help\" §afor more §linformation.");
+        } else if(args[0].equals("open")){
             if(sender.hasPermission("lkmenu.open")){
                 new OpenCommand().onCommand(sender, command, "openmenu", new String[]{args[1]});
             }else{
                 sender.sendMessage("§r[§cLKMenu§r] §cYou don't have permission to do that!");
             }
-        }else if(args[0].toLowerCase() == "reload"){
+        }else if(args[0].equals("reload")){
             if(sender.hasPermission("lkmenu.reload")){
                 instance.reloadConfig();
                 sender.sendMessage("§a[§6LKMenu§a] Reload success!");
             }else{
                 sender.sendMessage("§r[§cLKMenu§r] §cYou don't have permission to do that!");
             }
-        }else if(args.length == 0 || args[0] == "version"){
-            sender.sendMessage("§aServer is running §6LKMenu §bv1.0.0§a! <3");
-            sender.sendMessage("§aType §6§l\"/lkmenu help\" §afor more §linformation.");
-        }else if(args[0] == "help"){
+        }else if(args[0].equals("help")){
             if(sender.hasPermission("lkmenu.help")){
                 sender.sendMessage("§l§7--- §6LKMenu Help §7---");
                 sender.sendMessage("§6/openmenu <name>  §7-- §aOpen a menu.");
