@@ -12,7 +12,7 @@ public class MenuJSONTemplate {
     @SerializedName("WIDTH")
     private int width = JavaPlugin.getPlugin(LKMenu.class).getConfig().getInt("default-width");
     @SerializedName("HEIGHT")
-    private int height = JavaPlugin.getPlugin(LKMenu.class).getInt("default-height");
+    private int height = JavaPlugin.getPlugin(LKMenu.class).getConfig().getInt("default-height");
 
     public String getTitle() {
         return title;
