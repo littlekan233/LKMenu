@@ -45,14 +45,6 @@ public class Loader {
                 .replace("§$","&");
         ItemJson[] items = template.getItems();
 
-
-        if (width == 0) {
-            instance.getConfig().get("default-width");
-        }
-        if (width == 0) {
-            instance.getConfig().get("default-height");
-        }
-
         Inventory gui = Bukkit.createInventory(null, height*width, title);
 
         for (ItemJson item : items) {
