@@ -1,14 +1,14 @@
 package ml.littlekan.lkmenu;
 
 import org.bukkit.plugin.java.JavaPlugin;
-
 import com.google.gson.annotations.SerializedName;
+import java.util.List;
 
 public class MenuJSONTemplate {
     @SerializedName("TITLE")
     private String title;
     @SerializedName("ITEMS")
-    private ItemJson[] items;
+    private List<ItemJson> items;
     @SerializedName("WIDTH")
     private Integer width;
     @SerializedName("HEIGHT")
@@ -21,7 +21,7 @@ public class MenuJSONTemplate {
         return title;
     }
 
-    public ItemJson[] getItems() {
+    public List<ItemJson> getItems() {
         return items;
     }
 

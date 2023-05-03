@@ -1,12 +1,11 @@
 package ml.littlekan.lkmenu;
 
 import java.io.FileNotFoundException;
-
+import java.util.List;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
-import org.bukkit.inventory.Inventory;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class MenuEvent implements Listener {
@@ -14,7 +13,7 @@ public class MenuEvent implements Listener {
     public void onItemClick(InventoryClickEvent inv){
         try {
             JavaPlugin instance = JavaPlugin.getPlugin(LKMenu.class);
-            String[] menus = (String[]) instance.getConfig().get("enabled-menu");
+            List<String> menus = instance.getConfig().getStringList("enabled-menu");
             MenuJSONTemplate curinv = null;
 
             for (String menu : menus) {
@@ -25,7 +24,7 @@ public class MenuEvent implements Listener {
                 }
 
                 try {
-                    if (inv.getWhoClicked().getOpenInventory().getTitle() == curinv.getTitle()) {
+                    if (inv.getWhoClicked().getOpenInventory().getTitle().equals(curinv.getTitle())) {
                         break;
                     }
                 } catch (Exception e) {
@@ -38,7 +37,7 @@ public class MenuEvent implements Listener {
                 return;
             }
 
-            ItemJson[] items = curinv.getItems();
+            List<ItemJson> items = curinv.getItems();
             for (ItemJson item : items) {
                 if (inv.getRawSlot() == item.getIndex()) {
                     Player player = (Player) inv.getWhoClicked();
@@ -47,7 +46,7 @@ public class MenuEvent implements Listener {
                     }
                 }
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             // Do nothing
         }
     }

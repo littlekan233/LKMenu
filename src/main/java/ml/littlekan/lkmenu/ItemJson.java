@@ -1,6 +1,7 @@
 package ml.littlekan.lkmenu;
 
 import com.google.gson.annotations.SerializedName;
+import java.util.List;
 
 public class ItemJson {
     @SerializedName("INDEX")
@@ -12,7 +13,7 @@ public class ItemJson {
     @SerializedName("META")
     private MetaJsonTemplate meta;
     @SerializedName("CLICK")
-    private String[] onclick;
+    private List<String> onclick;
 
     public int getAmount() {
         if (amount == null) {
@@ -36,7 +37,7 @@ public class ItemJson {
         return index;
     }
 
-    public String[] getClickEvent(){
+    public List<String> getClickEvent(){
         return onclick;
     }
 }

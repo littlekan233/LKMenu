@@ -1,8 +1,7 @@
 package ml.littlekan.lkmenu;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 import com.google.gson.*;
 import com.google.gson.stream.JsonReader;
 import org.bukkit.Bukkit;
@@ -43,7 +42,7 @@ public class Loader {
         String title = template.getTitle()
                 .replace("&","§")
                 .replace("§$","&");
-        ItemJson[] items = template.getItems();
+        List<ItemJson> items = template.getItems();
 
         Inventory gui = Bukkit.createInventory(null, height*width, title);
 
@@ -53,14 +52,14 @@ public class Loader {
                 MetaJsonTemplate json = item.getMeta();
                 ItemMeta meta = stack.getItemMeta();
                 if(json.getDisplayName() != "") meta.setDisplayName(json.getDisplayName());
-                if(json.getLore() != new String[]{}){
-                    List<String> lore = new ArrayList<String>();
+                if(json.getLore() != new ArrayList<String>()){
+                    List<String> lore = new ArrayList<>();
                     for (String str : json.getLore()){
                         lore.add(str.replace("&", "§").replace("§$", "&"));
                     }
                     meta.setLore(lore);
                 }
-                if(json.getEnchantments() != new EnchantmentJson[]{}){
+                if(json.getEnchantments() != new ArrayList<EnchantmentJson>()){
                     for (EnchantmentJson enchant : json.getEnchantments()){
                         meta.addEnchant(Enchantment.getByKey(NamespacedKey.fromString(enchant.getId())), enchant.getLevel(), false);
                     }
