@@ -4,6 +4,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import com.google.gson.annotations.SerializedName;
 import java.util.List;
 
+@Deprecated
 public class MenuJSONTemplate {
     @SerializedName("TITLE")
     private String title;

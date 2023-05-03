@@ -14,7 +14,7 @@ public class OpenCommand implements CommandExecutor {
             sender.sendMessage("§r[§cLKMenu§r] §cYou are not specify the menu name! See \"/lkmenu help\" for help.");
             return true;
         }
-        MenuJSONTemplate menu;
+        Template menu;
         try {
             menu = new Loader().load(args[0]);
         } catch (FileNotFoundException e) {

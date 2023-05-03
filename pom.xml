@@ -6,7 +6,7 @@
 
     <groupId>ml.littlekan</groupId>
     <artifactId>LKMenu</artifactId>
-    <version>1.0.0-SNAPSHOT-b24</version>
+    <version>1.0.0-SNAPSHOT-b26</version>
     <packaging>jar</packaging>
 
     <name>LKMenu</name>
@@ -75,6 +75,12 @@
             <groupId>org.spigotmc</groupId>
             <artifactId>spigot-api</artifactId>
             <version>1.19.4-R0.1-SNAPSHOT</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.4</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>

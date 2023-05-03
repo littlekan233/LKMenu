@@ -20,7 +20,7 @@ public class Loader {
         for (String s : strlist) if(s.equals(str)) return true;
         return false;
     }
-    public MenuJSONTemplate load(String name) throws FileNotFoundException {
+    public Template load(String name) throws FileNotFoundException {
         File datafolder = org.bukkit.plugin.java.JavaPlugin.getPlugin(LKMenu.class).getDataFolder();
         File menus = new File(datafolder, "menus");
         File file = new File(menus, name + ".json");
@@ -32,35 +32,37 @@ public class Loader {
             return null;
         }
         Gson gson = new Gson();
-        MenuJSONTemplate gui = gson.fromJson(new JsonReader(new FileReader(file)), MenuJSONTemplate.class);
+        Template gui = gson.fromJson(new JsonReader(new FileReader(file)), Template.class);
         return gui;
     }
 
-    public Inventory toInstance(MenuJSONTemplate template){
+    public Inventory toInstance(Template template){
         int width = template.getWidth();
         int height = template.getHeight();
         String title = template.getTitle()
                 .replace("&","§")
                 .replace("§$","&");
-        List<ItemJson> items = template.getItems();
+        List<Template.ItemsBean> items = template.getItems();
 
         Inventory gui = Bukkit.createInventory(null, height*width, title);
 
-        for (ItemJson item : items) {
+        for (Template.ItemsBean item : items) {
             ItemStack stack = new ItemStack(Material.getMaterial(item.getId()), item.getAmount());
-            if(item.getMeta() != new MetaJsonTemplate()){
-                MetaJsonTemplate json = item.getMeta();
+            if(item.getMeta() != null){
+                Template.ItemsBean.MetaBean json = item.getMeta();
                 ItemMeta meta = stack.getItemMeta();
-                if(json.getDisplayName() != "") meta.setDisplayName(json.getDisplayName());
-                if(json.getLore() != new ArrayList<String>()){
+                if(json.getDisplayname() != "") meta.setDisplayName(json.getDisplayname()
+                        .replace("&", "§")
+                        .replace("§$", "&"));
+                if(json.getLore() != null){
                     List<String> lore = new ArrayList<>();
                     for (String str : json.getLore()){
                         lore.add(str.replace("&", "§").replace("§$", "&"));
                     }
                     meta.setLore(lore);
                 }
-                if(json.getEnchantments() != new ArrayList<EnchantmentJson>()){
-                    for (EnchantmentJson enchant : json.getEnchantments()){
+                if(json.getEnchantment() != null){
+                    for (Template.ItemsBean.MetaBean.EnchantmentBean enchant : json.getEnchantment()){
                         meta.addEnchant(Enchantment.getByKey(NamespacedKey.fromString(enchant.getId())), enchant.getLevel(), false);
                     }
                 }

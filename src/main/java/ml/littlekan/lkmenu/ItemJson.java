@@ -3,6 +3,7 @@ package ml.littlekan.lkmenu;
 import com.google.gson.annotations.SerializedName;
 import java.util.List;
 
+@Deprecated
 public class ItemJson {
     @SerializedName("INDEX")
     private Integer index;

@@ -14,7 +14,7 @@ public class MenuEvent implements Listener {
         try {
             JavaPlugin instance = JavaPlugin.getPlugin(LKMenu.class);
             List<String> menus = instance.getConfig().getStringList("enabled-menu");
-            MenuJSONTemplate curinv = null;
+            Template curinv = null;
 
             for (String menu : menus) {
                 try {
@@ -37,11 +37,11 @@ public class MenuEvent implements Listener {
                 return;
             }
 
-            List<ItemJson> items = curinv.getItems();
-            for (ItemJson item : items) {
+            List<Template.ItemsBean> items = curinv.getItems();
+            for (Template.ItemsBean item : items) {
                 if (inv.getRawSlot() == item.getIndex()) {
                     Player player = (Player) inv.getWhoClicked();
-                    for (String command : item.getClickEvent()) {
+                    for (String command : item.getClick()) {
                         player.chat(command);
                     }
                 }
