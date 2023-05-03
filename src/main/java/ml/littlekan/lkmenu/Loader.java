@@ -44,10 +44,13 @@ public class Loader {
                 .replace("§$","&");
         List<Template.ItemsBean> items = template.getItems();
 
-        Inventory gui = Bukkit.createInventory(null, height*width, title);
+        Inventory gui = Bukkit.createInventory(null,
+                height | instance.getConfig().getInt("default-height")
+                        * width | instance.getConfig().getInt("default-width")
+                , title);
 
         for (Template.ItemsBean item : items) {
-            ItemStack stack = new ItemStack(Material.getMaterial(item.getId()), item.getAmount());
+            ItemStack stack = new ItemStack(Material.getMaterial(item.getId()), item.getAmount() | 1);
             if(item.getMeta() != null){
                 Template.ItemsBean.MetaBean json = item.getMeta();
                 ItemMeta meta = stack.getItemMeta();
