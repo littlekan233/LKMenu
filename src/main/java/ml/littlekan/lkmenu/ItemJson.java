@@ -4,21 +4,27 @@ import com.google.gson.annotations.SerializedName;
 
 public class ItemJson {
     @SerializedName("INDEX")
-    private int index;
+    private Integer index;
     @SerializedName("AMOUNT")
-    private int amount = 1;
+    private Integer amount;
     @SerializedName("ID")
     private String id;
     @SerializedName("META")
-    private MetaJsonTemplate meta = new MetaJsonTemplate();
+    private MetaJsonTemplate meta;
     @SerializedName("CLICK")
     private String[] onclick;
 
     public int getAmount() {
+        if (amount == null) {
+            return 1;
+        }
         return amount;
     }
 
     public MetaJsonTemplate getMeta() {
+        if (meta == null) {
+            return new MetaJsonTemplate();
+        }
         return meta;
     }
 
