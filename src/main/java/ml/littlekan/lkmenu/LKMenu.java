@@ -10,7 +10,7 @@ public final class LKMenu extends JavaPlugin {
     @Override
     public void onEnable() {
         // Plugin startup logic
-        logger.info("LKMenu 1.0.0, by @littlekan233");
+        logger.info("LKMenu by @littlekan233");
         logger.info("Hello, server owner! >w<");
         if(!getDataFolder().isDirectory()){
             logger.info("It seems like you're first of use this plugin, initializing...");
@@ -28,6 +28,7 @@ public final class LKMenu extends JavaPlugin {
         getCommand("openmenu").setExecutor(new OpenCommand());
         getCommand("lkmenu").setExecutor(new MainCommand());
         getServer().getPluginManager().registerEvents(new MenuEvent(), this);
+        logger.info("Done! ");
     }
 
     @Override
