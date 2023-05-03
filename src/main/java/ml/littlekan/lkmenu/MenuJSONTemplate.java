@@ -8,7 +8,7 @@ public class MenuJSONTemplate {
     @SerializedName("TITLE")
     private String title;
     @SerializedName("ITEMS")
-    private List<ItemJson> items;
+    private List<ml.littlekan.lkmenu.ItemJson> items;
     @SerializedName("WIDTH")
     private Integer width;
     @SerializedName("HEIGHT")
@@ -21,7 +21,7 @@ public class MenuJSONTemplate {
         return title;
     }
 
-    public List<ItemJson> getItems() {
+    public List<ml.littlekan.lkmenu.ItemJson> getItems() {
         return items;
     }
 

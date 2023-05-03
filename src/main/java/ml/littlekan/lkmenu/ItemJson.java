@@ -13,7 +13,7 @@ public class ItemJson {
     @SerializedName("META")
     private MetaJsonTemplate meta;
     @SerializedName("CLICK")
-    private List<String> onclick;
+    private List<java.lang.String> onclick;
 
     public int getAmount() {
         if (amount == null) {
@@ -37,7 +37,7 @@ public class ItemJson {
         return index;
     }
 
-    public List<String> getClickEvent(){
+    public List<java.lang.String> getClickEvent(){
         return onclick;
     }
 }
