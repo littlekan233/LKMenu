@@ -1,11 +1,13 @@
 package ml.littlekan.lkmenu;
 
+import java.util.ArrayList;
+import java.util.List;
 import org.bukkit.command.Command;
-import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.command.TabExecutor;
 import org.bukkit.plugin.java.JavaPlugin;
 
-public class MainCommand implements CommandExecutor {
+public class MainCommand implements TabExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         JavaPlugin instance = JavaPlugin.getPlugin(LKMenu.class);
@@ -41,5 +43,16 @@ public class MainCommand implements CommandExecutor {
             sender.sendMessage("§r[§cLKMenu§r] §cUnknown command! Type §6\"/lkmenu help\"§c for help.");
         }
         return true;
+    }
+    @Override
+    public List<String> onTabComplete(CommandSender sender, Command command, String label, String[] args) {
+        if(args.length == 1){
+            List<String> list = new ArrayList<>();
+            list.add("help");
+            list.add("open");
+            list.add("reload");
+            list.add("version");
+        }
+        return null;
     }
 }

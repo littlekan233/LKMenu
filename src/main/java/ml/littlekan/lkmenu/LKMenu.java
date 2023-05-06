@@ -27,6 +27,7 @@ public final class LKMenu extends JavaPlugin {
         logger.info("Registering commands & event listeners...");
         getCommand("openmenu").setExecutor(new OpenCommand());
         getCommand("lkmenu").setExecutor(new MainCommand());
+        getCommand("lkmenu").setTabCompleter(new MainCommand());
         getServer().getPluginManager().registerEvents(new MenuEvent(), this);
         logger.info("Done! ");
     }
