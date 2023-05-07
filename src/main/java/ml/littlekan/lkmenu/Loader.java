@@ -50,7 +50,7 @@ public class Loader {
         Inventory gui = Bukkit.createInventory(null, height * width, title);
 
         for (Template.ItemsBean item : items) {
-            ItemStack stack = new ItemStack(Material.getMaterial(item.getId()), item.getAmount() | 1);
+            ItemStack stack = new ItemStack(Material.getMaterial(item.getId().replace("minecraft:", "").toUpperCase()), item.getAmount() | 1);
             if(item.getMeta() != null){
                 Template.ItemsBean.MetaBean json = item.getMeta();
                 ItemMeta meta = stack.getItemMeta();
