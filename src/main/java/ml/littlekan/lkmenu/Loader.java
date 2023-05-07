@@ -12,14 +12,25 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.apache.commons.jexl3.JexlContext;
+import org.apache.commons.jexl3.JexlEngine;
+import org.apache.commons.jexl3.JexlExpression;
+import org.apache.commons.jexl3.MapContext;
+import org.apache.commons.jexl3.internal.Engine;
 
 public class Loader {
     public JavaPlugin instance = JavaPlugin.getPlugin(LKMenu.class);
 
-    private boolean isItemExists(List<String> strlist, String str){
-        for (String s : strlist) if(s.equals(str)) return true;
-        return false;
+    private Material getMaterial(String id){
+        JexlEngine engine = new Engine();
+        JexlContext context = new MapContext();
+        context.set("Material", Material.class);
+        String name = id.replace("minecraft:", "").toUpperCase();
+        JexlExpression exp = engine.createExpression("Material."+name);
+        return (Material) exp.evaluate(context);
+        
     }
+
     public Template load(String name) throws FileNotFoundException {
         File datafolder = org.bukkit.plugin.java.JavaPlugin.getPlugin(LKMenu.class).getDataFolder();
         File menus = new File(datafolder, "menus");
@@ -27,7 +38,7 @@ public class Loader {
         if(!file.exists()){
             instance.getLogger().severe("This menu is enabled, but file \""+name+".json\" does not exists!");
             return null;
-        }else if (file.exists() && !isItemExists(instance.getConfig().getStringList("enabled-menus"), name)){
+        }else if (file.exists() && !instance.getConfig().getStringList("enabled-menus").contains(name)){
             instance.getLogger().severe("File \""+name+".json\" exists, but not enable in config.yml!");
             return null;
         }
@@ -50,7 +61,7 @@ public class Loader {
         Inventory gui = Bukkit.createInventory(null, height * width, title);
 
         for (Template.ItemsBean item : items) {
-            ItemStack stack = new ItemStack(Material.getMaterial(item.getId().replace("minecraft:", "").toUpperCase()), item.getAmount() | 1);
+            ItemStack stack = new ItemStack(getMaterial(item.getId()), item.getAmount() | 1);
             if(item.getMeta() != null){
                 Template.ItemsBean.MetaBean json = item.getMeta();
                 ItemMeta meta = stack.getItemMeta();
