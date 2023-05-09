@@ -28,11 +28,11 @@ public class OpenCommand implements CommandExecutor {
 
         Inventory gui = new Loader().toInstance(menu);
 
-        Player player = (Player) sender;
-        if(!(player instanceof Player)){
+        if(!(sender instanceof Player)){
             sender.sendMessage("§r[§cLKMenu§r] §cConsole cannot execute this command! ");
             return true;
         }
+        Player player = (Player) sender;
         player.openInventory(gui);
         return true;
     }
