@@ -2,13 +2,6 @@
 # (C) 2023 littlekan233. 
 # All rights reserved. 
 
-# Default menu width & height
-# If menu manifest(XXX.json)
-# doesn't set width and/or height,
-# will be use the default width and/or height
-default-width: 9
-default-height: 6
-
 # Enabled menus
 # If you want to use some menus,
 # Please add the menu's name(file name)

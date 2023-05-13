@@ -47,18 +47,15 @@ public class Loader {
     }
 
     public Inventory toInstance(Template template){
-        if(template.getHeight() == 0) template.setHeight(instance.getConfig().getInt("default-height"));
-        if(template.getWidth() == 0) template.setWidth(instance.getConfig().getInt("default-width"));
-        if(template.getTitle() == null || template.getTitle() == "") template.setTitle("&aTitle &r- &6LKMenu");
+        if(template.getTitle() == null || template.getTitle() == "") template.setTitle("&aUntitled menu &r- &6LKMenu");
 
-        int width = template.getWidth();
         int height = template.getHeight();
         String title = template.getTitle()
                 .replace("&","§")
                 .replace("§$","&");
         List<Template.ItemsBean> items = template.getItems();
 
-        Inventory gui = Bukkit.createInventory(null, height * width, title);
+        Inventory gui = Bukkit.createInventory(null, 9 * height, title);
 
         for (Template.ItemsBean item : items) {
             ItemStack stack = new ItemStack(getMaterial(item.getId()), item.getAmount() | 1);

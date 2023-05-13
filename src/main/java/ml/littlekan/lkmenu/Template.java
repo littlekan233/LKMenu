@@ -7,7 +7,6 @@ import java.util.List;
 
 @Data
 public class Template implements Serializable {
-    private int width;
     private int height;
     private String title;
     private List<ItemsBean> items;
