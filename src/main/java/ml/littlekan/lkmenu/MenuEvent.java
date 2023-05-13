@@ -13,8 +13,8 @@ public class MenuEvent implements Listener {
     public void onItemClick(InventoryClickEvent inv){
         JavaPlugin instance = JavaPlugin.getPlugin(LKMenu.class);
         try {
-            List<String> menus = instance.getConfig().getStringList("enabled-menu");
-            Template curinv = null;
+            List<String> menus = instance.getConfig().getStringList("enabled-menus");
+            Template curinv;
 
             for (String menu : menus) {
                 try {
@@ -50,7 +50,7 @@ public class MenuEvent implements Listener {
             Player p = (Player) inv.getWhoClicked();
             l.warning("Event process exception!");
             l.warning("Player: "+p.getName());
-            l.warning("Stack: \n"+e.toString());
+            l.warning("Stack: \n"+e.getStackTrace().toString());
         }
     }
 }
