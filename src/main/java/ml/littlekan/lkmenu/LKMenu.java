@@ -10,17 +10,18 @@ import org.bukkit.plugin.java.JavaPlugin;
 public final class LKMenu extends JavaPlugin {
     private java.util.logging.Logger logger = getLogger();
 
-    private String getVersion(){
+    private void shareversion(){
         String pluginYmlPath = "/plugin.yml";
         Reader reader = new InputStreamReader(getClass().getResourceAsStream(pluginYmlPath));
         YamlConfiguration yaml = YamlConfiguration.loadConfiguration(reader);
-        return yaml.getString("version");
+        SharedVariable.version = yaml.getString("version");
     }
 
     @Override
     public void onEnable() {
         // Plugin startup logic
-        logger.info("LKMenu v" + getVersion() + ", by @littlekan233");
+        shareversion();
+        logger.info("LKMenu v" +SharedVariable.version + ", by @littlekan233");
         logger.info("Hello, server owner! >w<");
         if(!getDataFolder().isDirectory()){
             logger.info("It seems like you're first of use this plugin, initializing...");
