@@ -11,8 +11,8 @@ import org.bukkit.plugin.java.JavaPlugin;
 public class MenuEvent implements Listener {
     @EventHandler
     public void onItemClick(InventoryClickEvent inv){
+        JavaPlugin instance = JavaPlugin.getPlugin(LKMenu.class);
         try {
-            JavaPlugin instance = JavaPlugin.getPlugin(LKMenu.class);
             List<String> menus = instance.getConfig().getStringList("enabled-menu");
             Template curinv = null;
 
@@ -46,7 +46,11 @@ public class MenuEvent implements Listener {
                 }
             }
         } catch (Exception e) {
-            // Do nothing
+            java.util.logging.Logger l = instance.getLogger();
+            Player p = (Player) inv.getWhoClicked();
+            l.warning("Event process exception!");
+            l.warning("Player: "+p.getName());
+            l.warning("Stack: \n"+e.toString());
         }
     }
 }

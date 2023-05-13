@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.event.HandlerList;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class LKMenu extends JavaPlugin {
@@ -48,6 +49,9 @@ public final class LKMenu extends JavaPlugin {
     @Override
     public void onDisable() {
         // Plugin shutdown logic
+        logger.info("Unregistering event");
+        HandlerList handler = new HandlerList();
+        handler.unregister(new MenuEvent());
         logger.info("See you next time");  
     }
 }

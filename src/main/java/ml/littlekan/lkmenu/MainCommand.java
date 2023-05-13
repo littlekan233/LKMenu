@@ -27,6 +27,7 @@ public class MainCommand implements TabExecutor {
                 if(args.length > 1 && args[1].equals("hard")){
                     if(SharedVariable.hardreload){
                         sender.sendMessage("§a[§6LKMenu§a] If this operation cause bugs, please restart the server. ");
+                        SharedVariable.hardreload = false;
                         new BukkitRunnable() {
                             public void run() {
                                 org.bukkit.plugin.java.JavaPlugin plugin = JavaPlugin.getPlugin(ml.littlekan.lkmenu.LKMenu.class);
@@ -40,6 +41,7 @@ public class MainCommand implements TabExecutor {
                     sender.sendMessage("§c[§6LKMenu§c] THIS OPERATION MAY CAUSE BUGS!");
                     sender.sendMessage("§a[§6LKMenu§a] If you want to do that, type this command again. ");
                     SharedVariable.hardreload = true;
+                    return true;
                 }
                 instance.reloadConfig();
                 sender.sendMessage("§a[§6LKMenu§a] Reload success!");
