@@ -24,7 +24,7 @@ public class MainCommand implements TabExecutor {
             }
         }else if(args[0].equals("reload")){
             if(sender.hasPermission("lkmenu.reload")){   
-                if(args[1].equals("hard")){
+                if(args.length > 1 && args[1].equals("hard")){
                     if(SharedVariable.hardreload){
                         sender.sendMessage("§a[§6LKMenu§a] If this operation cause bugs, please restart the server. ");
                         new BukkitRunnable() {
