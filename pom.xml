@@ -6,7 +6,7 @@
 
     <groupId>ml.littlekan</groupId>
     <artifactId>LKMenu</artifactId>
-    <version>1.0.0-SNAPSHOT-b34</version>
+    <version>1.0.0-SNAPSHOT-b35</version>
     <packaging>jar</packaging>
 
     <name>LKMenu</name>
