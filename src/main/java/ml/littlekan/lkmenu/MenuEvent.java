@@ -14,7 +14,7 @@ public class MenuEvent implements Listener {
         JavaPlugin instance = JavaPlugin.getPlugin(LKMenu.class);
         try {
             List<String> menus = instance.getConfig().getStringList("enabled-menus");
-            Template curinv;
+            Template curinv = null;
 
             for (String menu : menus) {
                 try {
