@@ -1,16 +1,25 @@
 package ml.littlekan.lkmenu;
 
 import java.io.File;
-import org.bukkit.Bukkit;
+import java.io.InputStreamReader;
+import java.io.Reader;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class LKMenu extends JavaPlugin {
     private java.util.logging.Logger logger = getLogger();
 
+    private String getVersion(){
+        String pluginYmlPath = "/plugin.yml";
+        Reader reader = new InputStreamReader(getClass().getResourceAsStream(pluginYmlPath));
+        YamlConfiguration yaml = YamlConfiguration.loadConfiguration(reader);
+        return yaml.getString("version");
+    }
+
     @Override
     public void onEnable() {
         // Plugin startup logic
-        logger.info("LKMenu by @littlekan233");
+        logger.info("LKMenu v" + getVersion() + ", by @littlekan233");
         logger.info("Hello, server owner! >w<");
         if(!getDataFolder().isDirectory()){
             logger.info("It seems like you're first of use this plugin, initializing...");
@@ -20,15 +29,19 @@ public final class LKMenu extends JavaPlugin {
             getConfig().set("enabled-menu",new String[]{});
             saveConfig();
              **/
+            //
             getDataFolder().mkdir();
             saveDefaultConfig();
             new File(getDataFolder(), "menus").mkdir();
         }
         logger.info("Registering commands & event listeners...");
         getCommand("openmenu").setExecutor(new OpenCommand());
+        logger.info("Registered command /openmenu to ml.littlekan.lkmenu.OpenCommand class");
         getCommand("lkmenu").setExecutor(new MainCommand());
         getCommand("lkmenu").setTabCompleter(new MainCommand());
+        logger.info("Registered command /lkmenu to ml.littlekan.lkmenu.MainCommand class");
         getServer().getPluginManager().registerEvents(new MenuEvent(), this);
+        logger.info("Registered event ml.littlekan.lkmenu.MenuEvent");
         logger.info("Done! ");
     }
 

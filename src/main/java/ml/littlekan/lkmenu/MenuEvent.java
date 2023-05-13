@@ -30,7 +30,6 @@ public class MenuEvent implements Listener {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-                return;
             }
             inv.setCancelled(true);
             if (inv.getRawSlot() > inv.getInventory().getSize() || inv.getRawSlot() < 0) {

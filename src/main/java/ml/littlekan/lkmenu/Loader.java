@@ -28,7 +28,6 @@ public class Loader {
         String name = id.replace("minecraft:", "").toUpperCase();
         JexlExpression exp = engine.createExpression("Material."+name);
         return (Material) exp.evaluate(context);
-        
     }
 
     public Template load(String name) throws FileNotFoundException {
@@ -36,7 +35,7 @@ public class Loader {
         File menus = new File(datafolder, "menus");
         File file = new File(menus, name + ".json");
         if(!file.exists()){
-            instance.getLogger().severe("This menu is enabled, but file \""+name+".json\" does not exists!");
+            instance.getLogger().severe("This menu is (not) enabled, but file \""+name+".json\" does not exists!");
             return null;
         }else if (file.exists() && !instance.getConfig().getStringList("enabled-menus").contains(name)){
             instance.getLogger().severe("File \""+name+".json\" exists, but not enable in config.yml!");
@@ -50,6 +49,7 @@ public class Loader {
     public Inventory toInstance(Template template){
         if(template.getHeight() == 0) template.setHeight(instance.getConfig().getInt("default-height"));
         if(template.getWidth() == 0) template.setWidth(instance.getConfig().getInt("default-width"));
+        if(template.getTitle() == null || template.getTitle() == "") template.setTitle("&aTitle &r- &6LKMenu");
 
         int width = template.getWidth();
         int height = template.getHeight();
@@ -71,7 +71,10 @@ public class Loader {
                 if(json.getLore() != null){
                     List<String> lore = new ArrayList<>();
                     for (String str : json.getLore()){
-                        lore.add(str.replace("&", "§").replace("§$", "&"));
+                        lore.add(str
+                            .replace("&", "§")
+                            .replace("§$", "&")
+                        );
                     }
                     meta.setLore(lore);
                 }
@@ -80,6 +83,7 @@ public class Loader {
                         meta.addEnchant(Enchantment.getByKey(NamespacedKey.fromString(enchant.getId())), enchant.getLevel(), false);
                     }
                 }
+                stack.setItemMeta(meta);
             }
             gui.setItem(item.getIndex(), stack);
         }

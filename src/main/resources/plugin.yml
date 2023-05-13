@@ -18,10 +18,10 @@ commands:
     aliases:
       - "lkm"
     description: "Main command."
-    usage: "/<command> [help|open <name>|reload|version]"
+    usage: "/<command> [help|open <name>|reload [hard]|version]"
 #libraries:
-  #- "org.projectlombok:lombok:1.18.4" # Lombok library
-  #- "org.apache.commons:jexl3:3.1" # Apache commons JEXL library
+#  - "org.projectlombok:lombok:1.18.4" # Lombok library
+#  - "org.apache.commons:jexl3:3.1" # Apache commons JEXL library
 permissions:
   lkmenu.open:
     description: "Permission for \"/openmenu\" and \"/lkmenu open\" command."
