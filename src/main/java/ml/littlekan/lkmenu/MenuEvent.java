@@ -50,7 +50,7 @@ public class MenuEvent implements Listener {
             Player p = (Player) inv.getWhoClicked();
             l.warning("Event process exception!");
             l.warning("Player: "+p.getName());
-            l.warning("Stack: \n"+e.getStackTrace().toString());
+            l.warning("Stack: \n"+e);
         }
     }
 }
