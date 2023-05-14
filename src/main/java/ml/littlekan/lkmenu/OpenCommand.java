@@ -5,7 +5,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
-import java.io.FileNotFoundException;
+import org.bukkit.plugin.java.JavaPlugin;
 
 public class OpenCommand implements CommandExecutor {
     @Override
@@ -17,8 +17,11 @@ public class OpenCommand implements CommandExecutor {
         Template menu;
         try {
             menu = new Loader().load(args[0]);
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
+        } catch (Exception e) {
+            java.util.logging.Logger l = JavaPlugin.getPlugin(LKMenu.class).getLogger();
+            l.warning("Command exception!");
+            l.warning("Stack: \n"+e);
+            menu = null;
         }
 
         if(menu == null){

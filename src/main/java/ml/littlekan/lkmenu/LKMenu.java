@@ -20,7 +20,18 @@ public final class LKMenu extends JavaPlugin {
     @Override
     public void onEnable() {
         // Plugin startup logic
-        shareversion();
+        if(SharedVariable.version.equals("")) shareversion();
+        String[] logo = new String[]{
+            "___    ___  ______   ____ ",
+            "| |    | | / /|  _\\_/_  | ____ ___ ____ __    __",
+            "| |    | |/ / | | \\ / | |/ __ \\| |/ _  \\| \\  / |",
+            "| |    |   |  | | | | | || ___/|   / \\ || |  | |",
+            "| |___ | |\\ \\ | | | | | || \\___|  |  | || \\__/ |",
+            "|_____||_| \\_\\|_| |_| |_|\\____/|__|  |_| \\___/_|"
+        };  // https://github.com/littlekan233/LKMenu/blob/master/logo.txt
+        for (String str : logo) {
+            logger.info(str);
+        }
         logger.info("LKMenu v" +SharedVariable.version + ", by @littlekan233");
         logger.info("Hello, server owner! >w<");
         if(!getDataFolder().isDirectory()){
@@ -38,10 +49,10 @@ public final class LKMenu extends JavaPlugin {
         }
         logger.info("Registering commands & event listeners...");
         getCommand("openmenu").setExecutor(new OpenCommand());
-        logger.info("Registered command /openmenu to ml.littlekan.lkmenu.OpenCommand class");
+        logger.info("Registered ml.littlekan.lkmenu.OpenCommand to command /openmenu");
         getCommand("lkmenu").setExecutor(new MainCommand());
         getCommand("lkmenu").setTabCompleter(new MainCommand());
-        logger.info("Registered command /lkmenu to ml.littlekan.lkmenu.MainCommand class");
+        logger.info("Registered ml.littlekan.lkmenu.MainCommand to command /lkmenu");
         getServer().getPluginManager().registerEvents(new MenuEvent(), this);
         logger.info("Registered event ml.littlekan.lkmenu.MenuEvent");
         logger.info("Done! ");

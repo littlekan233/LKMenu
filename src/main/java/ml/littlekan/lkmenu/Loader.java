@@ -30,16 +30,14 @@ public class Loader {
         return (Material) exp.evaluate(context);
     }
 
-    public Template load(String name) throws FileNotFoundException {
-        File datafolder = org.bukkit.plugin.java.JavaPlugin.getPlugin(LKMenu.class).getDataFolder();
+    public Template load(String name) throws FileNotFoundException, LKMenuLoadException {
+        File datafolder = instance.getDataFolder();
         File menus = new File(datafolder, "menus");
         File file = new File(menus, name + ".json");
         if(!file.exists()){
-            instance.getLogger().severe("This menu is (not) enabled, but file \""+name+".json\" does not exists!");
-            return null;
+            throw new LKMenuLoadException("This menu is (not) enabled, but file \""+name+".json\" does not exists!");
         }else if (file.exists() && !instance.getConfig().getStringList("enabled-menus").contains(name)){
-            instance.getLogger().severe("File \""+name+".json\" exists, but not enable in config.yml!");
-            return null;
+            throw new LKMenuLoadException("File \""+name+".json\" exists, but not enable in config.yml!");
         }
         Gson gson = new Gson();
         Template gui = gson.fromJson(new JsonReader(new FileReader(file)), Template.class);
@@ -58,7 +56,8 @@ public class Loader {
         Inventory gui = Bukkit.createInventory(null, 9 * height, title);
 
         for (Template.ItemsBean item : items) {
-            ItemStack stack = new ItemStack(getMaterial(item.getId()), item.getAmount() | 1);
+            if (item.getAmount() == 0) item.setAmount(1);
+            ItemStack stack = new ItemStack(getMaterial(item.getId()), item.getAmount());
             if(item.getMeta() != null){
                 Template.ItemsBean.MetaBean json = item.getMeta();
                 ItemMeta meta = stack.getItemMeta();

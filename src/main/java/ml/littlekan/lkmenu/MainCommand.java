@@ -17,7 +17,7 @@ public class MainCommand implements TabExecutor {
             sender.sendMessage("§aType §6§l\"/lkmenu help\" §afor more §linformation.");
         } else if(args[0].equals("open")){
             if(sender.hasPermission("lkmenu.open")){
-                new OpenCommand().onCommand(sender, command, "openmenu", new String[]{args[1]});
+                return new OpenCommand().onCommand(sender, command, "openmenu", new String[]{args[1]});
             }else{
                 sender.sendMessage("§r[§cLKMenu§r] §cYou don't have permission to do that!");
             }
