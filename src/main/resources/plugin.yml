@@ -32,6 +32,9 @@ permissions:
   lkmenu.help:
     description: "Permission for \"/lkmenu help\" command."
     default: true
+  lkmenu.showlogo:
+    description: "Permission for \"/lkmenu logo\" command."
+    default: true
   lkmenu.*:
     description: "All permissions of LKMenu."
     default: op
@@ -39,3 +42,12 @@ permissions:
       lkmenu.help: true
       lkmenu.open: true
       lkmenu.reload: true
+      lkmenu.showlogo: true
+  lkmenu.guest:
+    description: "Deny all permissions of LKMenu."
+    default: false
+    children:
+      lkmenu.help: false
+      lkmenu.open: false
+      lkmenu.reload: false
+      lkmenu.showlogo: false

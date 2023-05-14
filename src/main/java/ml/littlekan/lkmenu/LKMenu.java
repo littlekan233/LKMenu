@@ -21,15 +21,7 @@ public final class LKMenu extends JavaPlugin {
     public void onEnable() {
         // Plugin startup logic
         if(SharedVariable.version.equals("")) shareversion();
-        String[] logo = new String[]{
-            "___    ___  ______   ____ ",
-            "| |    | | / /|  _\\_/_  | ____ ___ ____ __    __",
-            "| |    | |/ / | | \\ / | |/ __ \\| |/ _  \\| \\  / |",
-            "| |    |   |  | | | | | || ___/|   / \\ || |  | |",
-            "| |___ | |\\ \\ | | | | | || \\___|  |  | || \\__/ |",
-            "|_____||_| \\_\\|_| |_| |_|\\____/|__|  |_| \\___/_|"
-        };  // https://github.com/littlekan233/LKMenu/blob/master/logo.txt
-        for (String str : logo) {
+        for (String str : SharedVariable.logo) {
             logger.info(str);
         }
         logger.info("LKMenu v" +SharedVariable.version + ", by @littlekan233");
