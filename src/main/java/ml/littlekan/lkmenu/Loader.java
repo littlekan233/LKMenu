@@ -21,16 +21,9 @@ import org.apache.commons.jexl3.internal.Engine;
 public class Loader {
     public JavaPlugin instance = JavaPlugin.getPlugin(LKMenu.class);
 
-    private Material getMaterial(String id){
-        JexlEngine engine = new Engine();
-        JexlContext context = new MapContext();
-        context.set("Material", Material.class);
-        String name = id.replace("minecraft:", "").toUpperCase();
-        JexlExpression exp = engine.createExpression("Material."+name);
-        return (Material) exp.evaluate(context);
-    }
+    public Template menu;
 
-    public Template load(String name) throws FileNotFoundException, LKMenuLoadException {
+    public Loader(String name) throws FileNotFoundException, LKMenuLoadException {
         File datafolder = instance.getDataFolder();
         File menus = new File(datafolder, "menus");
         File file = new File(menus, name + ".json");
@@ -40,11 +33,20 @@ public class Loader {
             throw new LKMenuLoadException("File \""+name+".json\" exists, but not enable in config.yml!");
         }
         Gson gson = new Gson();
-        Template gui = gson.fromJson(new JsonReader(new FileReader(file)), Template.class);
-        return gui;
+        menu = gson.fromJson(new JsonReader(new FileReader(file)), Template.class);
     }
 
-    public Inventory toInstance(Template template){
+    private Material getMaterial(String id){
+        JexlEngine engine = new Engine();
+        JexlContext context = new MapContext();
+        context.set("Material", Material.class);
+        String name = id.replace("minecraft:", "").toUpperCase();
+        JexlExpression exp = engine.createExpression("Material."+name);
+        return (Material) exp.evaluate(context);
+    }
+
+    public Inventory toInstance(){
+        Template template = menu;
         if(template.getTitle() == null || template.getTitle() == "") template.setTitle("&aUntitled menu &r- &6LKMenu");
 
         int height = template.getHeight();

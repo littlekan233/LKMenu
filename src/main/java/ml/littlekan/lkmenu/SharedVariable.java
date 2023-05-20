@@ -3,7 +3,7 @@ package ml.littlekan.lkmenu;
 public class SharedVariable {
     public static boolean hardreload = false;
     public static String version = "";
-    public static String[] logo = new String[]{
+    public static final String[] logo = new String[]{
         " _      _   _  __    __ ",
         "| |    | | / /|  \\__/  | ____  _  ___   _    _",
         "| |    | |/ / | |\\__/| |/ __ \\| |/__ \\ | \\  / |",
