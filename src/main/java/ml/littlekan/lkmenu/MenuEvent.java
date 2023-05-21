@@ -31,7 +31,9 @@ public class MenuEvent implements Listener {
                 }
 
                 try {
-                    if (inv.getWhoClicked().getOpenInventory().getTitle().equals(curinv.getTitle())) {
+                    if (inv.getWhoClicked().getOpenInventory().getTitle() == curinv.getTitle()
+                        .replace("&","§")
+                        .replace("§$","&")) {
                         isMenu = true;
                         break;
                     }
