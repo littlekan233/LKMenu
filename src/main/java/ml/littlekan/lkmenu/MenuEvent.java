@@ -2,6 +2,7 @@ package ml.littlekan.lkmenu;
 
 import java.io.FileNotFoundException;
 import java.util.List;
+
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -15,22 +16,25 @@ public class MenuEvent implements Listener {
         try {
             List<String> menus = instance.getConfig().getStringList("enabled-menus");
             Template curinv = null;
+            boolean isMenu = false;
 
             for (String menu : menus) {
                 try {
-                    curinv = new Loader().load(menu);
+                    curinv = new Loader(menu).menu;
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 }
 
                 try {
                     if (inv.getWhoClicked().getOpenInventory().getTitle().equals(curinv.getTitle())) {
+                        isMenu = true;
                         break;
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
+            if(!isMenu) return;
             inv.setCancelled(true);
             if (inv.getRawSlot() > inv.getInventory().getSize() || inv.getRawSlot() < 0) {
                 return;
