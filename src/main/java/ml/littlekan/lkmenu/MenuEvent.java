@@ -6,6 +6,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class MenuEvent implements Listener {
@@ -13,12 +14,16 @@ public class MenuEvent implements Listener {
     public void onItemClick(InventoryClickEvent inv){
         JavaPlugin instance = JavaPlugin.getPlugin(LKMenu.class);
         try {
+            InventoryType invtype = inv.getWhoClicked().getOpenInventory().getType();
+            if(invtype != InventoryType.CHEST){
+                return;
+            }
             List<String> menus = instance.getConfig().getStringList("enabled-menus");
             Template curinv = null;
 
             for (String menu : menus) {
                 try {
-                    curinv = new Loader().load(menu);
+                    curinv = new Loader(menu).menu;
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 }
