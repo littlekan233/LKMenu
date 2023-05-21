@@ -36,7 +36,7 @@ public class UpdateChecker {
         return null;
     }
 
-    public static long pubtimeToTimeStamp(String pubt) {
+    public long pubtimeToTimeStamp(String pubt) {
         try {
             return new SimpleDateFormat("yyyy-MM-ddTHH:mm:ssZ").parse(pubt).getTime();
         } catch (ParseException e) {
@@ -44,7 +44,7 @@ public class UpdateChecker {
         }
     }
 
-    public static long pttts(String pubt){
+    public long pttts(String pubt){
         return pubtimeToTimeStamp(pubt);
     }
 }
