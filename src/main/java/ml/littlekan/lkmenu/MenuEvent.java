@@ -2,7 +2,7 @@ package ml.littlekan.lkmenu;
 
 import java.io.FileNotFoundException;
 import java.util.List;
-
+import java.util.logging.Logger;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -20,20 +20,18 @@ public class MenuEvent implements Listener {
                 return;
             }
             List<String> menus = instance.getConfig().getStringList("enabled-menus");
-            Template curinv = null;
+            Loader curinv = null;
             boolean isMenu = false;
 
             for (String menu : menus) {
                 try {
-                    curinv = new Loader(menu).menu;
+                    curinv = new Loader(menu);
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 }
 
                 try {
-                    if (inv.getWhoClicked().getOpenInventory().getTitle() == curinv.getTitle()
-                        .replace("&","§")
-                        .replace("§$","&")) {
+                    if (inv.getWhoClicked().getOpenInventory().getTopInventory() == curinv.toInstance()) {
                         isMenu = true;
                         break;
                     }
@@ -47,7 +45,7 @@ public class MenuEvent implements Listener {
                 return;
             }
 
-            List<Template.ItemsBean> items = curinv.getItems();
+            List<Template.ItemsBean> items = curinv.menu.getItems();
             for (Template.ItemsBean item : items) {
                 if (inv.getRawSlot() == item.getIndex()) {
                     Player player = (Player) inv.getWhoClicked();
@@ -57,7 +55,7 @@ public class MenuEvent implements Listener {
                 }
             }
         } catch (Exception e) {
-            java.util.logging.Logger l = instance.getLogger();
+            Logger l = instance.getLogger();
             Player p = (Player) inv.getWhoClicked();
             l.warning("Event process exception!");
             l.warning("Player: "+p.getName());
