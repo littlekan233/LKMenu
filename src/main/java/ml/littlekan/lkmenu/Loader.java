@@ -2,7 +2,7 @@ package ml.littlekan.lkmenu;
 
 import java.io.*;
 import java.util.*;
-import com.google.gson.*;
+import com.google.gson.Gson;
 import com.google.gson.stream.JsonReader;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -65,13 +65,15 @@ public class Loader {
                 ItemMeta meta = stack.getItemMeta();
                 if(json.getDisplayname() != "") meta.setDisplayName(json.getDisplayname()
                         .replace("&", "§")
-                        .replace("§$", "&"));
+                        .replace("§$", "&")
+                        .replace("§§", "&"));
                 if(json.getLore() != null){
                     List<String> lore = new ArrayList<>();
                     for (String str : json.getLore()){
                         lore.add(str
                             .replace("&", "§")
                             .replace("§$", "&")
+                            .replace("§§", "&")
                         );
                     }
                     meta.setLore(lore);
