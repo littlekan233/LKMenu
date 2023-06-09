@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Reader;
+import org.bstats.bukkit.Metrics;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.event.HandlerList;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -64,6 +65,7 @@ public final class LKMenu extends JavaPlugin {
     @Override
     public void onEnable() {
         // Plugin startup logic
+        new Metrics(this, 18702);
         if(SharedVariable.version.equals("")) shareversion();
         for (String str : SharedVariable.logo) {
             logger.info(str);
