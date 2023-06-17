@@ -2,7 +2,7 @@ name: LKMenu
 version: '${project.version}'
 author: littlekan233(@littlekan on Spigot Community)
 main: ml.littlekan.lkmenu.LKMenu
-api-version: 1.13
+api-version: "1.13"
 website: www.littlekan.ml
 prefix: LKMenu
 commands:
@@ -25,16 +25,16 @@ commands:
 permissions:
   lkmenu.open:
     description: "Permission for \"/openmenu\" and \"/lkmenu open\" command."
-    default: true
+    default: "true"
   lkmenu.reload:
     description: "Permission for \"/lkmenu reload\" command."
     default: op
   lkmenu.help:
     description: "Permission for \"/lkmenu help\" command."
-    default: true
+    default: "true"
   lkmenu.showlogo:
     description: "Permission for \"/lkmenu logo\" command."
-    default: true
+    default: "true"
   lkmenu.*:
     description: "All permissions of LKMenu."
     default: op
@@ -45,7 +45,7 @@ permissions:
       lkmenu.showlogo: true
   lkmenu.guest:
     description: "Deny all permissions of LKMenu."
-    default: false
+    default: "false"
     children:
       lkmenu.help: false
       lkmenu.open: false
