@@ -7,4 +7,5 @@ import lombok.Data;
 public class UpdateCheckerTemplate implements Serializable{
     private boolean prerelease;
     private String tag_name;
+    private String published_at;
 }
