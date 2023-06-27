@@ -38,7 +38,7 @@ public class UpdateChecker {
 
     public long pubtimeToTimeStamp(String pubt) {
         try {
-            return new SimpleDateFormat("yyyy-MM-ddTHH:mm:ssZ").parse(pubt).getTime();
+            return new SimpleDateFormat("yyyy-MM-ddTHH:mm:ssZ".replaceAll("T"," ").replaceAll("Z", "")).parse(pubt.replaceAll("T"," ").replaceAll("Z", "")).getTime();
         } catch (ParseException e) {
             return 0;
         }

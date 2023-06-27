@@ -12,16 +12,16 @@ public class MainCommand implements TabExecutor {
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         JavaPlugin instance = JavaPlugin.getPlugin(LKMenu.class);
 
-        if(args.length == 0 || args[0].equals("version")){
+        if(args.length == 0 || args[0] == "version"){
             sender.sendMessage("§aServer is running §6LKMenu §bv" + SharedVariable.version + "§a! <3");
             sender.sendMessage("§aType §6§l\"/lkmenu help\" §afor more §linformation.");
-        } else if(args[0].equals("open")){
+        } else if(args[0] == "open"){
             if(sender.hasPermission("lkmenu.open")){
                 return new OpenCommand().onCommand(sender, command, "openmenu", new String[]{args[1]});
             }else{
                 sender.sendMessage("§r[§cLKMenu§r] §cYou don't have permission to do that!");
             }
-        }else if(args[0].equals("logo")){
+        }else if(args[0] == "logo"){
             if(sender.hasPermission("lkmenu.showlogo")){
                 sender.sendMessage("§a[§6LKMenu§a]§r Disabling LKMenu v"+SharedVariable.version);
                 sender.sendMessage("§a[§6LKMenu§a]§r Unregistering events");
@@ -40,14 +40,14 @@ public class MainCommand implements TabExecutor {
             }else{
                 sender.sendMessage("§r[§cLKMenu§r] §cYou don't have permission to do that!");
             }
-        }else if(args[0].equals("reload")){
+        }else if(args[0] == "reload"){
             if(sender.hasPermission("lkmenu.reload")){
                 instance.reloadConfig();
                 sender.sendMessage("§a[§6LKMenu§a] Reload success!");
             }else{
                 sender.sendMessage("§r[§cLKMenu§r] §cYou don't have permission to do that!");
             }
-        }else if(args[0].equals("help")){
+        }else if(args[0] == "help"){
             if(sender.hasPermission("lkmenu.help")){
                 sender.sendMessage("§l§7--- §6LKMenu Help §7---");
                 sender.sendMessage("§6/openmenu <name>  §7-- §aOpen a menu.");

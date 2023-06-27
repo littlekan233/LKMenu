@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Reader;
+import java.util.Objects;
 import org.bstats.bukkit.Metrics;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.event.HandlerList;
@@ -15,13 +16,13 @@ public final class LKMenu extends JavaPlugin {
 
     private void shareversion(){
         String pluginYmlPath = "/plugin.yml";
-        Reader reader = new InputStreamReader(getClass().getResourceAsStream(pluginYmlPath));
+        Reader reader = new InputStreamReader(Objects.requireNonNull(getClass().getResourceAsStream(pluginYmlPath)));
         YamlConfiguration yaml = YamlConfiguration.loadConfiguration(reader);
         SharedVariable.version = yaml.getString("version");
     }
 
     public void update(){
-        if(SharedVariable.version.contains("SNAPSHOT")){
+        if(!SharedVariable.version.replace("SNAPSHOT", "UPDATE-DISABLED").equals(SharedVariable.version)){
             logger.warning("Snapshot version can't use updater! ");
             return;
         }
@@ -39,7 +40,7 @@ public final class LKMenu extends JavaPlugin {
                 try {
                     for (ml.littlekan.lkmenu.UpdateCheckerTemplate t : u.check()) {
                         long _ts = u.pttts(t.getPublished_at());
-                        if (t.getTag_name() == ml.littlekan.lkmenu.SharedVariable.version){
+                        if (Objects.equals(t.getTag_name(), SharedVariable.version)){
                             _ct = _ts;
                         }
                         if (_ts > _lt) {
@@ -66,7 +67,7 @@ public final class LKMenu extends JavaPlugin {
     public void onEnable() {
         // Plugin startup logic
         new Metrics(this, 18702);
-        if(SharedVariable.version.equals("")) shareversion();
+        if(Objects.equals(SharedVariable.version, "")) shareversion();
         for (String str : SharedVariable.logo) {
             logger.info(str);
         }
